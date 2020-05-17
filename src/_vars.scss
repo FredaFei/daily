@@ -1,0 +1,30 @@
+$font-hei: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+
+$border-radius: 4px;
+
+$color-main: #faad14;
+$color-dander: red;
+$color-border: #ccc;
+$color-text: #333;
+$color-text-2: #666;
+$color-text-3: #999;
+$color-shadow: fade_out(black, 0.75);
+
+$height-header: 56px;
+$height-tab: 56px;
+$height-item: 56px;
+
+:export {
+  fontHei: $font-hei;
+  borderRadius: $border-radius;
+  colorMain: $color-main;
+  colorDanger: $color-dander;
+  colorBorder: $color-border;
+  colorText: $color-text;
+  colorText2: $color-text-2;
+  colorText3: $color-text-3;
+  colorShadow: $color-shadow;
+  heightHeader: $height-header;
+  heightItem: $height-item;
+  heightTab: $height-tab;
+}
