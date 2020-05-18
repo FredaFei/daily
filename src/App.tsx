@@ -5,6 +5,7 @@ import { SWRConfig } from 'swr'
 import { SignIn } from './views/signIn'
 import { Home } from './views/home'
 import { RecordDetail } from './views/recordDetail'
+import { RecordCreate } from './views/recordCreate'
 import { RecordEdit } from './views/recordEdit'
 import { CostTypeCreate } from './views/costTypeCreate'
 import { CostTypes } from './views/costTypes'
@@ -23,6 +24,7 @@ function App() {
           <Switch>
             <Route exact path="/signIn"><SignIn/></Route>
             <Route exact path="/home"><Home/></Route>
+            <Route exact path="/record/create"><RecordCreate/></Route>
             <Route exact path="/record/:id"><RecordDetail/></Route>
             <Route exact path="/record/:id/edit"><RecordEdit/></Route>
             <Route exact path="/costTypes"><CostTypes/></Route>
