@@ -7,15 +7,17 @@ interface CostItemProps {
   date: RecordItemProps['date']
   records: Array<RecordItemProps>
 }
+
 interface RecordItemProps {
   id: string
   icon: string
   name: string
-  amount: string | number
-  amountType: 0 | 1
+  amount: number
+  costType: 0 | 1
   date: string
   note: string
 }
+
 interface PagedResources<T> {
   pageNum: number;
   pageSize: number;
