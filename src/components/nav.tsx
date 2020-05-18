@@ -27,7 +27,7 @@ export const Nav = () => {
       <Icon name="left" />
       <span>明细</span>
     </NavLink>
-    <NavLink to="/" exact activeClassName="active">
+    <NavLink to="/record/create" exact activeClassName="active">
       <Icon name="right" />
       <span>记账</span>
     </NavLink>
