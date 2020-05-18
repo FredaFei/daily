@@ -30,7 +30,6 @@ export const DayTop = styled.div`
   border-bottom: 1px solid #ddd;
 `
 export const RecordItem = styled.div`
-  margin-left: 8px;
   >a{
     display: flex;
     justify-content: space-between;
