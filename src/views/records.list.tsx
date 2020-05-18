@@ -6,10 +6,12 @@ import Icon from '../components/icon';
 import { MainButton } from '../components/button/mainButton'
 import { Day, DayMain, RecordItem, DayTop } from './home.styled'
 import { defaultHttp } from '../lib/http';
+import { getAmount } from '../lib/getAmount'
 import { Loading } from '../components/loading';
 import { Padding } from '../components/padding'
 import { Stretch } from '../components/stretch'
 import { Center } from '../components/center'
+import { Money } from '../components/money'
 
 const Wrapper = styled.div`
   
@@ -37,8 +39,9 @@ export const List: React.FC = () => {
         day.records.length > 0 &&
         <Day key={day.id}>
           <DayTop>
-            <div className='time'>01月20日 星期一 {day.date}</div>
-            <div className='sum'> 支出：29</div>
+            <div className='time'>01月20日 星期一</div>
+            <div className='sum'> 收入：<Money>{getAmount(day.records.filter(i=>i.costType===0))}</Money></div>
+            <div className='sum'> 支出：<Money>{getAmount(day.records.filter(i=>i.costType===1))}</Money></div>
           </DayTop>
           <DayMain>
             {
