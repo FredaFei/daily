@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import swr, { useSWRPages } from 'swr';
 import { Link } from 'react-router-dom';
 import Icon from '../components/icon';
-import {MainButton} from '../components/button/mainButton'
+import { MainButton } from '../components/button/mainButton'
 import { Day, DayMain, RecordItem, DayTop } from './home.styled'
 import { defaultHttp } from '../lib/http';
 import { Loading } from '../components/loading';
+import { Padding } from '../components/padding'
+import { Stretch } from '../components/stretch'
+import { Center } from '../components/center'
 
 const Wrapper = styled.div`
   
@@ -31,6 +34,7 @@ export const List: React.FC = () => {
       }));
       if (!response) {return <Loading/>}
       return response.data?.map(day => (
+        day.records.length > 0 &&
         <Day key={day.id}>
           <DayTop>
             <div className='time'>01月20日 星期一 {day.date}</div>
@@ -38,7 +42,6 @@ export const List: React.FC = () => {
           </DayTop>
           <DayMain>
             {
-              day.records.length > 0 &&
               day.records.map(record => <RecordItem key={record.id}>
                 <Link to={`/detail?id=${record.id}`}>
                   <Icon name={record.icon}/>
@@ -59,7 +62,15 @@ export const List: React.FC = () => {
     <Wrapper>
       {pages}
     </Wrapper>
-    {isEmpty ? '暂无数据' : isReachingEnd ? '没有更多了' : isLoadingMore ? <MainButton onClick={()=>loadMore()}>加载更多</MainButton> : null}
+    {isEmpty ? <Center>暂无数据</Center> :
+      <Padding>
+        <Stretch>
+          {isReachingEnd ? <Center>没有更多了</Center> :
+            isLoadingMore ? null :
+              <MainButton onClick={() => loadMore()}>加载更多</MainButton>}
+        </Stretch>
+      </Padding>
+    }
   </>
 };
 
