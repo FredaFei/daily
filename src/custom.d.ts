@@ -24,3 +24,13 @@ interface PagedResources<T> {
   totalPage: number;
   data: T[];
 }
+interface CostType {
+  id: string
+  icon: string
+  name: string
+  costType: 0 | 1
+  userId: string
+}
+interface Resource<T> {
+  data: T
+}
