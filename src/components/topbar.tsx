@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components';
-
+import { history } from '../lib/history';
+import { matchPath } from 'react-router-dom'
 import Icon from './icon'
 import vars from '_vars.scss';
 
@@ -37,7 +38,21 @@ const Action = styled.div`
 `
 
 const Topbar: React.FC<TopbarProps> = props => {
-  const goBack = () => {}
+  const goBack = () => {
+    const { pathname } = history.location
+    const backs: { [K: string]: string } = {}
+    console.log(`pathname ${pathname}`)
+    console.log(`backs`)
+    console.log(backs)
+    for (let key in backs) {
+      const route = matchPath<{ [k: string]: string }>(pathname, { path: key, exact: true })
+      console.log(`route ${route}`)
+      if (!route) { continue; }
+      console.log(`route ${route}`)
+      return history.push(backs[key].replace(/:([^V]+)/g, (match, capture) => route.params[capture]))
+    }
+    history.goBack()
+  }
   return <Wrapper>
     {props.hasBack ? <Icon name="left" onClick={goBack}/> : <Icon/>}
     <span>{props.title}</span>
