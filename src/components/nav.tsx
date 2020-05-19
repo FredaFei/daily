@@ -23,11 +23,11 @@ const NavWrapper = styled.div`
 `
 export const Nav = () => {
   return <NavWrapper>
-    <NavLink to="/" exact activeClassName="active">
+    <NavLink to="/home" exact activeClassName="active">
       <Icon name="left" />
       <span>明细</span>
     </NavLink>
-    <NavLink to="/record/create" exact activeClassName="active">
+    <NavLink to="/recordExpense/create" exact activeClassName="active">
       <Icon name="right" />
       <span>记账</span>
     </NavLink>
