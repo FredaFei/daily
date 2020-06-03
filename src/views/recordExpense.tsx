@@ -6,6 +6,7 @@ import Icon from '../components/icon';
 import { IconName } from '../components/iconName'
 import { ShapedDiv } from '../components/shapedDiv'
 import Calculate from './calculate/index'
+import { history } from '../lib/history'
 
 const List = styled.div`
   display: flex;
@@ -29,11 +30,9 @@ export const RecordExpense: React.FC = props => {
   const [visibleCalculate, setVisibleCalculate] = useState(false)
   console.log(costType);
   const onItemClick = (item: CostType, index: number) => {
-    if (costType && costType.length && (index + 1)) {
-      // todo create types
-      return
+    if (costType && costType.length === (index + 1)) {
+      history.push('/costTypes')
     }
-    console.log('item');
     open()
   }
   const open = () => {
@@ -43,8 +42,9 @@ export const RecordExpense: React.FC = props => {
     setVisibleCalculate(false)
   }
   const onAddRecord = () => {
-    //  ajax
+    //  todo ajax
     close()
+    history.push('/')
   }
   return <RecordLayout title="record edit">
     <List>
@@ -58,6 +58,5 @@ export const RecordExpense: React.FC = props => {
       ))}
     </List>
     {visibleCalculate && <Calculate onAdd={onAddRecord}/>}
-    {/*<Calculate onAdd={onAddRecord}/>*/}
   </RecordLayout>
 }
