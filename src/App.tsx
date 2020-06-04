@@ -11,7 +11,8 @@ import { RecordExpense } from './views/recordExpense'
 import { RecordEarn } from './views/recordEarn'
 import { RecordEdit } from './views/recordEdit'
 import { CostTypeCreate } from './views/costTypeCreate'
-import { CostTypes } from './views/costTypes'
+import { CostTypesExpense } from './views/costTypesExpense'
+import { CostTypesEarn } from './views/costTypesEarn'
 import { Me } from './views/me'
 
 const Wrapper = styled.div`
@@ -31,7 +32,8 @@ function App() {
             <Route exact path="/recordEarn/create"><RecordEarn/></Route>
             <Route exact path="/record/:id"><RecordDetail/></Route>
             <Route exact path="/record/:id/edit"><RecordEdit/></Route>
-            <Route exact path="/costTypes"><CostTypes/></Route>
+            <Route exact path="/costTypes/expense"><CostTypesExpense/></Route>
+            <Route exact path="/costTypes/earn"><CostTypesEarn/></Route>
             <Route exact path="/costType/create/:type"><CostTypeCreate/></Route>
             <Route exact path="/me"><Me/></Route>
             <Redirect exact from="/" to="/home"/>
