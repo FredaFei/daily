@@ -30,8 +30,10 @@ export const RecordExpense: React.FC = props => {
   const [visibleCalculate, setVisibleCalculate] = useState(false)
   console.log(costType);
   const onItemClick = (item: CostType, index: number) => {
+    debugger;
     if (costType && costType.length === (index + 1)) {
-      history.push('/costTypes')
+      history.push('/costTypes/expense')
+      return false
     }
     open()
   }

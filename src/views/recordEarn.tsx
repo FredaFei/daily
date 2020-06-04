@@ -31,7 +31,7 @@ export const RecordEarn: React.FC = props => {
   console.log(costType);
   const onItemClick = (item: CostType, index: number) => {
     if (costType && costType.length === (index + 1)) {
-      history.push('/costTypes')
+      history.push('/costTypes/earn')
     }
     open()
   }
