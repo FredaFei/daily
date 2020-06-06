@@ -14,16 +14,15 @@ const List = styled.div`
   padding: 8px;
 `
 const Item = styled.div`
-  display: block;
   width: 24%;
-  &:not(:nth-child(4n)) {
-    margin-right: calc(4% / 3);
-  }
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-bottom: 8px;
+  &:not(:nth-child(4n)) {
+    margin-right: calc(4% / 3);
+  }
 `
 export const RecordExpense: React.FC = props => {
   const { costType } = useCostType(0)
