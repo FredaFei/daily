@@ -7,7 +7,7 @@ export interface RequestConfig extends AxiosRequestConfig {
 class Http {
     client: AxiosInstance;
 
-    constructor(public baseUrl: string, public handleError?: (error: any) => Promise<never>) {
+    constructor(public baseUrl: string, public handleError?: (error: any) => Promise<any>) {
         this.client = axios.create({
             baseURL: baseUrl,
             timeout: 10 * 1000,
@@ -25,9 +25,10 @@ class Http {
                         method === 'delete' ? this.client.delete<T>(url!, config) : undefined as never;
         return promise.then(null, error => {
             if ((typeof autoHandlerError === 'function' ? autoHandlerError(error) : autoHandlerError) && this.handleError) {
-                return this.handleError(error);
+                return this.handleError(error.response.data);
             } else {
-                return Promise.reject(error);
+                console.log(error.response);
+                return Promise.reject(error.response.data);
             }
         });
     }
@@ -37,7 +38,6 @@ class Http {
     }
 
     post<T>(url: string, data?: unknown, options?: RequestConfig) {
-        console.log('post', data);
         return this.ajax<T>({ ...options, url, data, method: 'post' });
     }
 
@@ -53,7 +53,7 @@ class Http {
 
 const isDev = () => window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const defaultHttp = new Http(
-    '',
+    isDev() ? '' : '',
     error => {
         if (error.isAxiosError) {
             const { response } = error as AxiosError;
@@ -63,7 +63,9 @@ const defaultHttp = new Http(
                 console.log('sign in');
             } else if (response?.status === 404) {
                 console.log('not found');
-            } else if (response?.status >= 400) {
+            } else if (response?.status === 422) {
+                return Promise.reject(response.data);
+            } else if (response?.status > 422) {
                 console.log('server busy');
             }
         }
